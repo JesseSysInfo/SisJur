@@ -17,9 +17,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/senha/resetar/{email}', 'PasswordController@passwordReset')->name('senha.resetar');
+
 Route::post('/entrar', 'LoginController@entrar')->name('entrar')->middleware('guest');
 Route::get('/sair', 'LoginController@sair')->name('sair')->middleware('auth');
 
 Route::middleware(['auth'])->group(function(){
+    
     Route::get('/home', 'HomeController@home')->name('home');
+
+    Route::middleware(['admin'])->group(function(){
+        Route::get('/usuarios', 'UserController@usuarios')->name('usuarios');
+        Route::get('/usuarios/novo', 'UserController@novo')->name('usuarios.novo');
+        Route::post('/usuarios/criar', 'UserController@criar')->name('usuarios.criar');
+        Route::get('/usuarios/edicao/{user}', 'UserController@edicao')->name('usuarios.edicao');
+        Route::post('/usuarios/editar/{user}', 'UserController@editar')->name('usuarios.editar');
+    });
+    
 });
