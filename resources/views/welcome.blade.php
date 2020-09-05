@@ -28,6 +28,10 @@
                 font-size: 60px;
             }
 
+            #card-nova-senha {
+                display: none;
+            }
+
         </style>
     </head>
     <body>
@@ -40,7 +44,7 @@
                 </div>
 
                         @guest
-                        <div class="card col-md-8 m-auto">
+                        <div class="card col-md-8 m-auto" id="card-login">
                             
                             <div class="card-body">
                                 @if(Session::has('error'))
@@ -85,10 +89,32 @@
                                             <button type="submit" class="btn btn-primary">
                                                 {{ __('Entrar') }}
                                             </button>
+                                            <br>
+                                            <button type="button" class="btn btn-link mt-3" onclick="changeCards();" >
+                                                Esqueci minha senha.
+                                            </button>
 
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+
+                        <div class="card col-md-8 m-auto" id="card-nova-senha">
+                            <div class="card-body">
+                                <div class="card-header">Recuperar senha</div>
+                                <div class="form-group row mt-2">
+                                    <label for="reset-email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="reset-email" type="email" class="form-control" name="reset-email" value="" required autocomplete="reset-email" autofocus>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <button class="btn btn-primary" onclick="resetarSenha();" id="btn-enviar">Enviar</button>
+                                    <button class="btn btn-secondary" onclick="changeCards();">Cancelar</button>
+                                </div>
                             </div>
                         </div>
                 @else
@@ -100,7 +126,78 @@
                 @endguest
             </div>
         </div>
-    </body>
+       
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+    <script>
+
+    var card_nova_senha = $("#card-nova-senha");
+    var card_login = $("#card-login");
+    var show_card_senha = false;
+    
+
+    function showCardSenha(show_card_senha)
+    {
+        if(show_card_senha == true)
+        {
+            card_nova_senha.show();
+            card_login.hide();
+        }
+        else
+        {
+            card_nova_senha.hide();
+            card_login.show();
+        }
+    }
+
+    function changeCards(){
+        show_card_senha = !show_card_senha;
+        $("#reset-email").val("");
+        showCardSenha(show_card_senha);
+    }
+
+    function resetarSenha()
+    {
+        var reset_email = $("#reset-email").val();
+        var btn_alterar_senha = $("#btn-enviar");
+        if(reset_email == "")
+        {
+            Swal.fire('Informe seu E-mail');
+        }
+        else
+        {
+            var _url = '/senha/resetar/'+reset_email;
+            btn_alterar_senha.prop('disabled', true);
+            btn_alterar_senha.text('aguarde...');
+            $.ajax({
+                type: 'GET',
+                url: _url,
+                dataType: 'json',
+                success: function(data){
+                    btn_alterar_senha.prop('disabled', false);
+                    btn_alterar_senha.text('Alterar senha');
+                    Swal.fire(
+                    'Atenção!',
+                    data['msg'],
+                    'info'
+                    );
+
+                    changeCards();
+                }, 
+                error: function(){
+                    btn_alterar_senha.prop('disabled', false);
+                    btn_alterar_senha.text('Alterar senha');
+                    Swal.fire(
+                    'Atenção!',
+                    'Ocorreu um erro ao tentar alterar a senha.',
+                    'error'
+                    );
+                }
+            });
+        }
+
+    }
+    
+    </script>
 </html>

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/senha/resetar/{email}', 'PasswordController@passwordReset')->name('senha.resetar');
 
@@ -35,3 +35,6 @@ Route::middleware(['auth'])->group(function(){
     });
     
 });
+
+Route::get('/usuarios/alterar_senha/{token}', 'UserController@alterarSenha')->name('usuarios.alterar_senha');
+Route::post('/senha/alterar/{user}', 'PasswordController@alteraSenha')->name('senha.alterar');

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Role;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -106,5 +108,25 @@ class UserController extends Controller
         ->back()
         ->withInput();
 
+    }
+
+    public function alterarSenha($token)
+    {
+        $enable = true;
+        $password_reset = DB::table('password_resets')
+        ->where('token', '=', $token)
+        ->first();
+
+        $dt = Carbon::createMidnightDate($password_reset->created_at);
+
+        if($password_reset == null || $dt->diffInHours(Carbon::now()) > 24)
+        {
+            $enable = false;
+        }
+        
+        $user = User::where('email', '=', $password_reset->email)
+        ->first();
+
+        return view('usuario.alterar_senha', ['enable' => $enable, 'user' => $user]);
     }
 }

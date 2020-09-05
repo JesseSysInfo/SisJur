@@ -11,7 +11,7 @@
 <h2>Editar Usuário</h2>
 <div class="card">
     <div class="card-body">
-        <div class="text-right"><button class="btn btn-sm btn-success" onclick="resetar_senha();">Alterar senha</button></a></div>
+        <div class="text-right"><button class="btn btn-sm btn-success" id="btn_alterar_senha" onclick="resetar_senha();">Alterar senha</button></a></div>
         <form action="{{ route('usuarios.editar', $user) }}" method="post">
             @csrf
             <div class="form-group row">
@@ -77,8 +77,10 @@
 
 @push('scripts')
 <script>
+var btn_alterar_senha = $("#btn_alterar_senha");
 function resetar_senha()
 {
+    var _url = '/senha/resetar/'+$('#email').val();
     Swal.fire({
         title: 'Tem certeza?',
         text: 'Deseja realmente alterar a senha!',
@@ -88,17 +90,23 @@ function resetar_senha()
         cancelButtonText: 'Não, cancelar'
         }).then((result) => {
         if (result.value) {
+            btn_alterar_senha.prop('disabled', true);
+            btn_alterar_senha.text('aguarde...');
             $.ajax({
                 type: 'GET',
-                url: "{{ route('senha.resetar', $user->email) }}",
+                url: _url,
                 success: function(){
+                    btn_alterar_senha.prop('disabled', false);
+                    btn_alterar_senha.text('Alterar senha');
                     Swal.fire(
                     'Atenção!',
-                    'Verifique a caixa de e-mail para alterar a senha.',
+                    'Link para alteração de senha enviado com sucesso!.',
                     'success'
                     );
                 }, 
                 error: function(){
+                    btn_alterar_senha.prop('disabled', false);
+                    btn_alterar_senha.text('Alterar senha');
                     Swal.fire(
                     'Atenção!',
                     'Ocorreu um erro ao tentar alterar a senha.',
