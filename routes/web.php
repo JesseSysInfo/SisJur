@@ -27,11 +27,16 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/home', 'HomeController@home')->name('home');
 
     Route::middleware(['admin'])->group(function(){
+        //usuários
         Route::get('/usuarios', 'UserController@usuarios')->name('usuarios');
         Route::get('/usuarios/novo', 'UserController@novo')->name('usuarios.novo');
         Route::post('/usuarios/criar', 'UserController@criar')->name('usuarios.criar');
         Route::get('/usuarios/edicao/{user}', 'UserController@edicao')->name('usuarios.edicao');
         Route::post('/usuarios/editar/{user}', 'UserController@editar')->name('usuarios.editar');
+        //clientes
+        Route::get('/clientes', 'ClienteController@clientes')->name('clientes');
+        Route::get('/clientes/novo', 'ClienteController@novo')->name('clientes.novo');
+        Route::post('/clientes/cadastrar', 'ClienteController@cadastrar')->name('clientes.cadastrar');
     });
     
 });

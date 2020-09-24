@@ -5,6 +5,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('usuarios') }}">Usuários</a>
+          <a class="dropdown-item" href="{{ route('clientes') }}">Clientes</a>
         </div>
       </li>
 @endif
