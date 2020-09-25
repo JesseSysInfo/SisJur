@@ -61,11 +61,6 @@
                     <div class="col-md-3">
                         <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror cpf" name="cpf" value="{{ old('cpf') }}" 
                         autocomplete="cpf">
-                        @error('cpf')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>                            
                 </div>
                 <div class="form-group row" id="div_cnpj">
@@ -73,22 +68,12 @@
                     <div class="col-md-3">
                         <input id="cnpj" type="text" class="form-control @error('cnpj') is-invalid @enderror cnpj" name="cnpj" value="{{ old('cnpj') }}" 
                         autocomplete="cnpj">
-                        @error('cnpj')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>                            
                 </div>
                 <div class="form-group row">
                     <label for="data_nascimento" class="col-form-label col-md-4 text-md-right">Data de Nascimento</label>
                     <div class="col-md-3">
                         <input id="data_nascimento" type="text" class="form-control @error('data_nascimento') is-invalid @enderror data" name="data_nascimento" value="{{ old('data_nascimento') }}">
-                        @error('data_nascimento')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>            
                 </div>
                 <div class="form-group row">
@@ -96,11 +81,6 @@
                     <div class="col-md-4">
                         <input id="nacionalidade" type="text" class="form-control @error('nascionalidade') is-invalid @enderror" name="nacionalidade" value="{{ old('nacionalidade') }}"
                         autocomplete="nacionalidade" size="100">
-                        @error('nacionalidade')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>            
                 </div>
                 <div class="form-group row">
@@ -108,11 +88,6 @@
                     <div class="col-md-4">
                         <input id="estado_civil" type="text" class="form-control @error('estado_civil') is-invalid @enderror" name="estado_civil" value="{{ old('estado_civil') }}"
                         autocomplete="estado_civil" size="50">
-                        @error('estado_civil')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>            
                 </div>
                 <div class="form-group row">
@@ -120,11 +95,6 @@
                     <div class="col-md-6">
                         <input id="nome_mae" type="text" class="form-control @error('nome_mae') is-invalid @enderror" name="nome_mae" value="{{ old('nome_mae') }}"
                         autocomplete="nome_mae" size="180">
-                        @error('nome_mae')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>            
                 </div>
                 <div class="form-group row">
@@ -132,11 +102,6 @@
                     <div class="col-md-6">
                         <input id="nome_pai" type="text" class="form-control @error('nome_pai') is-invalid @enderror" name="nome_pai" value="{{ old('nome_pai') }}"
                         autocomplete="nome_pai" size="180">
-                        @error('nome_pai')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>            
                 </div>
                 <div class="form-group row">
@@ -144,11 +109,6 @@
                     <div class="col-md-6">
                         <input id="profissao" type="text" class="form-control @error('profissao') is-invalid @enderror" name="profissao" value="{{ old('profissao') }}"
                         autocomplete="profissao" size="100">
-                        @error('profissao')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>            
                 </div>
                 <div class="form-group row">
@@ -156,14 +116,56 @@
                     <div class="col-md-6">
                         <textarea id="beneficio"  class="form-control @error('profissao') is-invalid @enderror" name="beneficio" value="{{ old('beneficio') }}"
                         autocomplete="beneficio" size="500" rows="3"></textarea>
-                        @error('beneficio')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>      
                 </div>
                 <hr>
+                <div class="form-group row">
+                    <label for="cep" class="col-form-label col-md-4 text-md-right">CEP</label>
+                    <div class="col-md-3">
+                        <input id="cep" type="text" class="form-control @error('cep') is-invalid @enderror cep" name="cep" value="{{ old('cep') }}"
+                        autocomplete="cep">
+                    </div>            
+                </div>
+                <div class="form-group row">
+                    <label for="endereco" class="col-form-label col-md-4 text-md-right">Endereço</label>
+                    <div class="col-md-6">
+                        <input id="endereco" type="text" class="form-control @error('endereco') is-invalid @enderror" name="endereco" value="{{ old('endereco') }}"
+                        autocomplete="endereco" size="180">
+                    </div>            
+                </div>
+                <div class="form-group row">
+                    <label for="bairro" class="col-form-label col-md-4 text-md-right">Bairro</label>
+                    <div class="col-md-6">
+                        <input id="bairro" type="text" class="form-control @error('bairro') is-invalid @enderror" name="bairro" value="{{ old('bairro') }}"
+                        autocomplete="bairro" size="180">
+                    </div>            
+                </div>
+                <div class="form-group row">
+                    <label for="cidade" class="col-form-label col-md-4 text-md-right">Cidade</label>
+                    <div class="col-md-6">
+                        <input id="cidade" type="text" class="form-control @error('cidade') is-invalid @enderror" name="cidade" value="{{ old('cidade') }}"
+                        autocomplete="cidade" size="180">
+                    </div>            
+                </div>
+                <div class="form-group row">
+                    <label for="uf" class="col-form-label col-md-4 text-md-right">UF</label>
+                    <div class="col-md-3">
+                        <input id="uf" type="text" class="form-control @error('uf') is-invalid @enderror" name="uf" value="{{ old('uf') }}"
+                        autocomplete="uf" size="2">
+                    </div>            
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <label for="" class="col-form-label col-md-4 text-md-right">Telefones</label>
+                    <div class="col-md-3">
+                        <input id="celular" type="text" class="form-control @error('celular') is-invalid @enderror celular" name="celular" value="{{ old('celular') }}"
+                        autocomplete="celular">
+                    </div>  
+                    <div class="col-md-3">
+                        <input id="fixo" type="text" class="form-control @error('fixo') is-invalid @enderror fixo" name="fixo" value="{{ old('fixo') }}"
+                        autocomplete="fixo">
+                    </div>          
+                </div>
                 <div class="mt-3 text-right">
                 <button class="btn btn-primary" type="submit">Cadastrar</button>
                 <a class="btn btn-secondary" href="{{ route('clientes') }}">Cancelar</a>
@@ -193,6 +195,35 @@ $('.tp_pessoa').change(function(){
     {
         $('#div_cpf').hide();
         $('#div_cnpj').show();
+    }
+});
+
+function setEndereco(endereco, bairro, cidade, uf)
+{
+    $('#endereco').val(endereco);
+    $('#bairro').val(bairro);
+    $('#cidade').val(cidade);
+    $('#uf').val(uf);
+}
+
+$('#cep').keyup(function(){
+    var cep = $(this).val().replace('.', '').replace('-', '');
+
+    if(cep.length == 8)
+    {
+        $.ajax({
+            type: 'GET',
+            url: 'https://viacep.com.br/ws/'+cep+'/json/',
+            dataType: 'json'
+        }).done(function(resposta){
+            setEndereco(resposta['logradouro'], resposta['bairro'], resposta['localidade'], resposta['uf']);
+        }).fail(function(jqXHR, textStatus){
+            alert('Error ao buscar endereço: ' + textStatus);
+        });
+    }
+    else
+    {
+        setEndereco('','','','');
     }
 });
 </script>

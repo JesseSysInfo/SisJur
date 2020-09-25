@@ -28,6 +28,9 @@ class CreateClientesTable extends Migration
             $table->string('estado_civil');
             $table->string('beneficio', 500)->nullable();
             $table->timestamps();
+
+            $table->biginteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

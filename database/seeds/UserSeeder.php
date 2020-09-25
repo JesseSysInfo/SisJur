@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
             'name' => 'Jesse de Oliveira Abreu',
             'email' => 'jesse.ti.305@gmail.com',
             'password' => Hash::make('teste123'), 
-            'ativo' => 1
+            'ativo' => 1, 
+            'role_id' => 1
         ]);
     }
 }
