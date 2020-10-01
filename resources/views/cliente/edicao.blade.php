@@ -3,15 +3,18 @@
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 <li class="breadcrumb-item"><a href="{{ route('clientes') }}">Clientes</a></li>
-<li class="breadcrumb-item active" aria-current="page">Novo</li>
+<li class="breadcrumb-item active" aria-current="page">{{ $visualizar == 1 ? 'Visualizar' : 'Editar' }}</li>
 @endsection
 
 @section('content')
 <div class="container">
-    <h2>Novo Cliente</h2>
+    <h2>{{ $visualizar == 1 ? 'Visualizar' : 'Editar' }}</h2>
+    <div>
+        <em><small>Alterado em: {{ $cliente->updated_at }} por {{ $cliente->getUsuarioAlteracao != null ? $cliente->getUsuarioAlteracao->name : 'Usuário não registrado' }}</small></em>
+    </div>
     <div class="card">
         <div class="card-body">
-            @include('cliente.form_cadastro')
+            @include('cliente.form_edicao')
         </div>
     </div>
 </div>
@@ -19,13 +22,22 @@
 
 @push('scripts')
 <script>
-$('#div_cnpj').hide();
+if({{ $cliente->tipo_pessoa }} == 1)
+{
+    $('#div_cpf').show();
+    $('#div_cnpj').hide();
+}
+if({{ $cliente->tipo_pessoa }} == 2)
+{
+    $('#div_cpf').hide();
+    $('#div_cnpj').show();
+}
 
 $('.tp_pessoa').change(function(){
 
     var tp_pessoa_val = $(this).val();
-    $('#cpf').val("");    
-    $('#cnpj').val("");
+    $('#cpf').val('{{ $cliente->cpf }}');    
+    $('#cnpj').val('{{ $cliente->cnpj }}');
 
     if(tp_pessoa_val == 1)
     {

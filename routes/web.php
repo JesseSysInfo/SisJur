@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/clientes', 'ClienteController@clientes')->name('clientes');
         Route::get('/clientes/novo', 'ClienteController@novo')->name('clientes.novo');
         Route::post('/clientes/cadastrar', 'ClienteController@cadastrar')->name('clientes.cadastrar');
+        Route::get('/clientes/edicao/{cliente}/{visualizar}', 'ClienteController@edicao')->name('clientes.edicao');
+        Route::post('/clientes/editar/{cliente}', 'ClienteController@editar')->name('clientes.editar');
     });
     
 });

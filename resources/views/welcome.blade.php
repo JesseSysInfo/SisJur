@@ -40,11 +40,12 @@
             <div class="content">
             
                 <div class="title m-b-md">
-                    {{ config('app.name', 'SisJuri') }}
+                    {{ config('app.name', 'SisJuri') }} <br>
+                    <img width="100" height="100" src="{{ asset('images/justica.png') }}" class="mb-3" alt="">
                 </div>
 
                         @guest
-                        <div class="card col-md-8 m-auto" id="card-login">
+                        <div class="card col-md-8 m-auto" id="card-login">            
                             
                             <div class="card-body">
                                 @if(Session::has('error'))

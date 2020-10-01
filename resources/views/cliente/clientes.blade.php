@@ -19,7 +19,7 @@
                         <th>Nome</th>
                         <th>CPF</th>
                         <th>E-mail</th>
-                        <th>Opções</th>
+                        <th class="text-center">Opções</th>
                     </tr>
                 </thead>
 
@@ -29,7 +29,10 @@
                         <td>{{ $cliente->nome }}</td>
                         <td>{{ $cliente->cpf }}</td>
                         <td>{{ $cliente->email }}</td>
-                        <td align="center"><a href="#">Editar</a></td>
+                        <td align="center">
+                            <a href="{{ route('clientes.edicao', [$cliente, 1]) }}">Visualizar</a> |
+                            <a href="{{ route('clientes.edicao', [$cliente, 2]) }}">Editar</a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

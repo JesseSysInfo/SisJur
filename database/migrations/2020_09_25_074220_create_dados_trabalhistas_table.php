@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContatosTable extends Migration
+class CreateDadosTrabalhistasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateContatosTable extends Migration
      */
     public function up()
     {
-        Schema::create('contatos', function (Blueprint $table) {
+        Schema::create('dados_trabalhistas', function (Blueprint $table) {
             $table->id();
-            $table->string('celular')->nullable();
-            $table->string('fixo')->nullable();
+            $table->string('ctps')->nullable();
+            $table->string('serie')->nullable();
+            $table->string('pis_pasep')->nullable();
             $table->timestamps();
 
             $table->biginteger('cliente_id')->unsigned();
-            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onCascade('delete');
         });
     }
 
@@ -31,6 +32,6 @@ class CreateContatosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contatos');
+        Schema::dropIfExists('dados_trabalhistas');
     }
 }

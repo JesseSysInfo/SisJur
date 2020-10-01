@@ -20,12 +20,12 @@ class CreateClientesTable extends Migration
             $table->string('cpf')->unique()->nullable();
             $table->string('cnpj')->unique()->nullable();
             $table->string('email')->unique();
-            $table->date('data_nascimento');
+            $table->date('data_nascimento')->nullable();
             $table->string('nacionalidade')->nullable();
             $table->string('profissao')->nullable();
             $table->string('nome_pai')->nullable();
             $table->string('nome_mae')->nullable();
-            $table->string('estado_civil');
+            $table->string('estado_civil')->nullable();
             $table->string('beneficio', 500)->nullable();
             $table->timestamps();
 
